@@ -1,0 +1,20 @@
+---
+title: "Week 3 Assign"
+author: "Aziz Mohammed"
+date: "September 15, 2018"
+output: html_document
+---
+# Interactive Graph for Population Trends 
+# in Four US states  from 1850 t0 2017 
+# by Decade (Using Plotly)
+```{r, echo=FALSE, message = FALSE}
+library(ggplot2)
+library(plotly)
+library(tidyr)
+library(dplyr)
+
+uspop <- as.data.frame(read.csv("./USpop.csv"))
+plot_ly(uspop, x = uspop$i..decade, y = uspop$pop, color  = uspop$state, mode = "lines")
+```
+
+
