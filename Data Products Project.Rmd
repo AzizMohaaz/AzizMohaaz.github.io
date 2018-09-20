@@ -1,0 +1,52 @@
+---
+title: "Model Selection"
+author: "Aziz Mohammed"
+date: "September 19, 2018"
+output: ioslides_presentation
+---
+
+## Choosing Best Predictors
+
+### model selection is difficult for
+- multivariable
+- generalized regression model
+
+### In this project, a simple case is considered
+- single variable and 
+- linear regression model
+
+### mtcars dataset is used
+- mpg as outcome variable 
+- the remaing 10 variables are predictors
+
+## How to Select the Best Predictor?
+
+### ui.R in shiny inputs the number of predictors desired
+- min = 2, max = 11
+- error is generated if input is out of range
+
+### server.R in shiny executes the best predictor selection
+- fits mpg vs. each predictor
+- computes pvalue for each predictor
+- predictor with least pvalue is selected
+
+### project outputs
+- plot of best predictor vs mpg
+- name and pvalue of predictor
+
+## R Code for Fitting the Best Predictor 
+
+```{r cars, echo = TRUE, comment=""}
+data(mtcars)
+fit <- lm(mtcars$mpg ~ mtcars$wt)
+summary(fit)$coefficients
+```
+
+## R Code for Plotting Best Predictor 
+
+```{r graph, echo=FALSE}
+plot(mtcars$wt, mtcars$mpg, xlab = "weight", ylab = "Milesper Gallon",
+     cex = 1.5, pch= 16)
+abline(fit, col = "blue", lwd = 2)
+```
+
